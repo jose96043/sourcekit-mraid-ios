@@ -6,16 +6,17 @@
             if (mraid.getState() === 'loading') {
                 mraid.addEventListener('stateChange', handleStateChanged);
                 mraid.addEventListener('ready', showMyAd);
+                console.log("mraid state - loadig")
             } else {
                 showMyAd();
             }
         
             function showMyAd() {
-                alert('MRAID is ready');
+                console.log('showMyAd() - MRAID is ready');
             }
         
             function handleStateChanged(state) {
-                alert('current state: ' + state);
+                console.log('handleStateChanged() - current state: ' + state);
             }
         </script>
     </head>
