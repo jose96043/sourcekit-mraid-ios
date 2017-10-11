@@ -7,11 +7,16 @@
 			function screenSize() {
 	    		var size = mraid.getScreenSize();
 	    		console.log(size.width + "," + size.height);
+			var ad = document.getElementById('screenSize');
+                	ad.innerHTML = size.width + "," + size.height;
             }
         </script>
 	</head>
 	<body bgcolor="FF6600">
 		<button style="height:30px;width:90px;" onclick="screenSize();">getScreenSize</button>
+		<div id="screenSize">
+            		
+        	</div>
 		
 	</body>
 </html>
