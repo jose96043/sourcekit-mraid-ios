@@ -45,7 +45,7 @@
     <body>
         
         <script type="text/javascript">
-            var messageDiv = document.getElementById('message');
+//             var messageDiv = document.getElementById('message');
             var handleStateChange = function(state) {
                 console.log("mraid state: " + mraid.getState());
                 var ad = document.getElementById('ad');
@@ -64,7 +64,12 @@
             }
         
         var handleErrors = function (message, source) {
-            messageDiv.innerHTML = source + ' generated an error message: "' + message + '"';
+            setTimeout(function(){
+                var messageDiv = document.getElementById('message');
+                messageDiv.innerHTML = source + ' generated an error message: "' + message + '"';
+            }, 2000);
+            
+            
             console.log(source + ' generated an error message: "' + message + '"');
         }
         
