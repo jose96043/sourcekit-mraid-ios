@@ -64,7 +64,9 @@
             }
         
         var handleErrors = function (message, source) {
-            alert(source + ' generated an error message: "' + message + '"');
+            var ad = document.getElementById('message');
+            ad.innerHTML = source + ' generated an error message: "' + message + '"';
+            console.log(source + ' generated an error message: "' + message + '"');
         }
         
         
@@ -77,6 +79,9 @@
         
         <div id='ad' class='default' style="text-align:center;">
             Loading this will cause an error on JS side
+        </div>
+        <div id='message'>
+            
         </div>
         
     </body>
