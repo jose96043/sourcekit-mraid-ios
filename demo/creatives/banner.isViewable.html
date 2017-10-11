@@ -10,17 +10,23 @@
             }
             
         	function isViewable() {
-  				var msg = "This ad is on the screen!";
-				var viewable = mraid.isViewable();
-				if (viewable) {
-                    console.log(msg);
+  			var msg = "This ad is on the screen!";
+			var viewable = mraid.isViewable();
+			var ad = document.getElementById('isViewable')
+			if (viewable) {
+				ad.innerHTML = msg;
+                    		console.log(msg);
 		    	} else {
-                    console.log("Ad off screen");
-                }
+				ad.innerHTML = "Ad off screen";
+                    		console.log("Ad off screen");
+               		}
             }
 		    </script>
 	</head>
 	<body bgcolor="FF6600">
 		<button style="height:30px;width:90px;" onclick="isViewable();">Test isViewable</button>
+		<div id="isViewable">
+			
+		</div>
 	</body>
 </html>
