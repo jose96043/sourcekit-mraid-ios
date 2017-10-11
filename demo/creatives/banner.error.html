@@ -19,28 +19,26 @@
                 -webkit-text-size-adjust: none;
             }
         
-        html,body {
-            height: 100%;
-            margin: 0;
-        }
-        
-        div {
-            width:100%;
-            min-height:100%;
-            text-align: center;
-            color: white;
-        }
-        
-        .default {
-            background-color:silver;
-        }
-        
-        .resized {
-            background-color:grey;
-        }
-        
-            </style>
-        
+            html,body {
+                height: 100%;
+                margin: 0;
+            }
+
+            div {
+                width:100%;
+                min-height:100%;
+                text-align: center;
+                color: white;
+            }
+
+            .default {
+                background-color:silver;
+            }
+
+            .resized {
+                background-color:grey;
+            }
+        </style>
     </head>
     <body>
         
@@ -64,10 +62,10 @@
             }
         
         var handleErrors = function (message, source) {
-            setTimeout(function(){
-                var messageDiv = document.getElementById('message');
-                messageDiv.innerHTML = source + ' generated an error message: "' + message + '"';
-            }, 2000);
+//             setTimeout(function(){
+//                 var messageDiv = document.getElementById('message');
+//                 messageDiv.innerHTML = source + ' generated an error message: "' + message + '"';
+//             }, 2000);
             
             
             console.log(source + ' generated an error message: "' + message + '"');
