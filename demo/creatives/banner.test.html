@@ -214,6 +214,9 @@
                             <input type="checkbox" id="UseCustomClose" onChange="updateUseCustomClose(this.checked)">useCustomClose</input>
                         </td>
                     </tr>
+                    <tr>
+                        <button onclick="unloadEvent()">Unload Event</button>
+                    </tr>
                 </table>
                 
                 <table>
@@ -529,6 +532,11 @@
                         logMRAIDMessage("Creating calendar object with params = " + printObject(calendarObject));
                     
                         mraid.createCalendarEvent(calendarObject);
+                    }
+                        
+                    function unloadEvent(){
+                        logMRAIDMessage("Unload Event");
+                        mraid.unload();
                     }
                     
                     function updateUseCustomClose(checked)
