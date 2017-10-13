@@ -600,6 +600,8 @@
                         updateViewableDiagnostic();
                         logMRAIDMessage("viewableChange event fired!: visible = " + visible);
                     }
+                        
+                    
                     
                     function errorHandler(message, action)
                     {
@@ -615,27 +617,25 @@
                         showMyAd();
                     }
                     
-                    function showMyAd()
-                    {
+                    function showMyAd() {
                         updateAllDiagnostics();
                             
                         // Add all listeners
                         mraid.addEventListener("stateChange", stateChangeHandler);
                         mraid.addEventListener("sizeChange", sizeChangeHandler);
                         mraid.addEventListener("viewableChange", viewableChangeHandler);
+                        mraid.addEventListener("exposureChange", exposureChangeHandler);
                         mraid.addEventListener("error", errorHandler);
                         
                         logMRAIDMessage("MRAID version = " + mraid.getVersion());
                         
                         // First call to getExpandProperties should return screen width/height.  
                         var expandProperties = mraid.getExpandProperties();
-                        if ( (window.orientation == 0) || (window.orientation == 180) )
-                        {
+                        if ( (window.orientation == 0) || (window.orientation == 180) ) {
                             screenWidth = expandProperties.width;
                             screenHeight = expandProperties.height;
                         }
-                        else
-                        {
+                        else {
                             screenWidth = expandProperties.height;
                             screenHeight = expandProperties.width;
                         }
@@ -646,6 +646,10 @@
                         var resizeMaxSize = mraid.getMaxSize();
                         document.getElementById("ResizeWidth").value = resizeMaxSize.width;
                         document.getElementById("ResizeHeight").value = resizeMaxSize.height;
+                    }
+                        
+                    function exposureChangeHandler(exposedPercentage, visibleRectangle, occlusionRectangles) {
+                        console.log("exposureChange :    exposed % -> " + exposedPercentage);
                     }
                     
                     function setupViewport(width)
