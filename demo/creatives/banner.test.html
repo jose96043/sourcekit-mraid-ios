@@ -1,4 +1,4 @@
-<http>
+<html>
 <head>
 <script src="mraid.js"></script> 
 </head>
@@ -6,15 +6,16 @@
 <body>
 <div id="adContainer" style="width:320px;margin:0px;padding:0px;background-color:#ffffff;">
 	<div id="normal" style="display:none;width:320px;height:50px;margin:auto;position:relative;top:0px;left:0px;">
-		<img width="320" height="50" src="https://admarvel.s3.amazonaws.com/demo/mraid/320x50_click_to_expand.png" onclick="javascript:expand();"/>
+		<img width="320" height="50" src="https://admarvel.s3.amazonaws.com/demo/mraid/320x50_click_to_expand.png" onclick="javascript:resize();"/>
 	</div>
 	
-	<div id="expanded" style="display:none;width:320px;height:250px;margin:auto;position:relative;top:0px;left:0px;">
+	<div id="resized" style="display:none;width:320px;height:250px;margin:auto;position:relative;top:0px;left:0px;">
 		<img width="320" height="250" style="position:absolute;top:0px;left:0px;" src="https://admarvel.s3.amazonaws.com/demo/mraid/320x250.png" />
-		
+		<img width="20" height="20" style="position:absolute;top:5px;right:5px;" src="https://admarvel.s3.amazonaws.com/demo/mraid/Close_38x38.png" onclick="javascript:collapse();" />
+
 		<img width="37" height="37" style="position:absolute;top:90px;left:56px;" src="https://admarvel.s3.amazonaws.com/demo/mraid/Html_37x37.png" onclick="javascript:openSite('https://www.opera.com');" />
-		<img width="37" height="37" style="position:absolute;top:90px;left:113px;" src="https://admarvel.s3.amazonaws.com/demo/mraid/Location_37x37.png" onclick="javascript:openSite('https://maps.google.com/maps?q=1875+S+Grant+St,+San+Mateo,+CA&hl=en&sll=46.238212,6.864936&sspn=0.135592,0.222816&oq=1875+S&hnear=1875+S+Grant+St,+San+Mateo,+California+94402&t=m&z=17&iwloc=A')" />
-		<img width="37" height="37" style="position:absolute;top:90px;left:170px;" src="https://admarvel.s3.amazonaws.com/demo/mraid/Download_37x37.png" onclick="javascript:openSite('https://itunes.apple.com/us/app/opera-mini-web-browser/id363729560?mt=8&ign-mpt=uo%3D4');" />
+		<img width="37" height="37" style="position:absolute;top:90px;left:113px;" src="https://admarvel.s3.amazonaws.com/demo/mraid/Location_37x37.png" onclick="javascript:openSite('httpss://maps.google.com/maps?q=1875+S+Grant+St,+San+Mateo,+CA&hl=en&sll=46.238212,6.864936&sspn=0.135592,0.222816&oq=1875+S&hnear=1875+S+Grant+St,+San+Mateo,+California+94402&t=m&z=17&iwloc=A')" />
+		<img width="37" height="37" style="position:absolute;top:90px;left:170px;" src="https://admarvel.s3.amazonaws.com/demo/mraid/Download_37x37.png" onclick="javascript:openSite('httpss://itunes.apple.com/us/app/opera-mini-web-browser/id363729560?mt=8&ign-mpt=uo%3D4');" />
 		<img width="37" height="37" style="position:absolute;top:90px;left:227px;" src="https://admarvel.s3.amazonaws.com/demo/mraid/Video_37x37.png" onclick="javascript:playVideo('https://admarvel.s3.amazonaws.com/demo/mraid/OMW_SOUND_VIDEO_RENEW.iPhoneSmall.mp4');" />
 	
 		<img width="37" height="37" style="position:absolute;top:147px;left:56px;" src="https://admarvel.s3.amazonaws.com/demo/mraid/SMS_37x37.png" onclick="javascript:sendSMS('16502122336');" />
@@ -93,6 +94,7 @@ function createCalendarEvent()
 	}
 }
 
+
 // Core Ad Functions
 function collapse()
 {
@@ -114,21 +116,21 @@ function showMyAd()
 	mraid.addEventListener("stateChange", updateAd);  
 }
 
-function expand()
+function resize()
 {	
-	mraid.setOrientationProperties({"allowOrientationChange":false, "forceOrientation":"portrait"});
-    mraid.expand();
+    mraid.setResizeProperties({"width":320,"height":250,"offsetX":0,"offsetY":0,"allowOffscreen":false});
+    mraid.resize();
 }
 
 function updateAd(state)
 {	
-	if (state == "expanded")
+	if (state == "resized")
 	{
-    	toggleLayer('normal', 'expanded');
+    	toggleLayer('normal', 'resized');
 	}
 	else if (state == "default")
 	{ 
-		toggleLayer('expanded', 'normal');
+		toggleLayer('resized', 'normal');
 	}
 }
 
@@ -140,6 +142,14 @@ function toggleLayer(fromLayer, toLayer)
 	var toElem = document.getElementById(toLayer);
 	toElem.style.display = '';
 }
+
+window.addEventListener("orientationchange", function ()
+{
+	if (mraid.getState() == "resized")
+	{
+		collapse();
+	}
+});
 
 function setupViewport(width)
 {
@@ -174,5 +184,4 @@ doReadyCheck();
 </script>
 
 </body>
-
 </html>
